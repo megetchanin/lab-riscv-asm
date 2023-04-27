@@ -3,20 +3,20 @@
 #define N 4
 #define M 6
 
-void process(int n, int m, int matrix [M][N], int result)
+void process(int n, int m, int matrix [M][N], int* result)
 {
-    result = 0;
+    *result = 0;
     int min_sum = 0;
-    int sum = 0;
     for (int i = 0; i < n; ++i) {
+        int sum = 0;
         for (int j = 0; j < m; ++j) 
         {
-            sum += matrix[m][n];
+            sum += matrix[j][i];
         }
-        if (n > 0){
+        if (i > 0){
             if (sum < min_sum){
                 min_sum = sum;
-                result = n;
+                *result = i;
             }
         }
         else
@@ -38,11 +38,9 @@ int main(int argc, char** argv)
         }
     }
 
-    process(N, M, matrix, result);
+    process(N, M, matrix, &result);
 
-    for (int i = 0; i < M; ++i) {
-        printf("%d ", result);
-    }
+    printf("%d\n", result);
 
     return 0;
 }
